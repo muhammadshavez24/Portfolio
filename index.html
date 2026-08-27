@@ -95,6 +95,55 @@
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     @media (max-width: 768px) { #webgl-canvas { opacity: 0.4; } }
+
+    /* 3D showcase layer inspired by editorial product showcases */
+    .scene-3d { perspective: 1600px; perspective-origin: 50% 45%; }
+    .hero-stage { position: relative; min-height: 620px; display: grid; place-items: center; }
+    .hero-copy { position: relative; z-index: 4; }
+    .project-orbit { position: absolute; right: -2%; top: 50%; width: min(52vw, 620px); height: 520px; transform: translateY(-50%); transform-style: preserve-3d; pointer-events: none; }
+    .project-orbit::before { content:''; position:absolute; inset:18% 4%; border:1px solid rgba(186,200,177,.16); border-radius:50%; transform:rotateX(68deg) rotateZ(-18deg); box-shadow:0 0 80px rgba(123,150,105,.12); }
+    .project-orbit::after { content:''; position:absolute; width:260px; height:260px; left:50%; top:50%; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle,rgba(186,200,177,.12),transparent 68%); filter:blur(10px); }
+    .book { position:absolute; width:220px; height:310px; left:50%; top:50%; transform-style:preserve-3d; transform:translate(-50%,-50%) rotateY(-24deg) rotateX(8deg) translateZ(80px); transition:transform .7s cubic-bezier(.2,.75,.25,1); filter:drop-shadow(0 35px 35px rgba(0,0,0,.42)); }
+    .book-face { position:absolute; inset:0; border-radius:8px 14px 14px 8px; border:1px solid rgba(230,230,230,.24); background:linear-gradient(145deg,#18251a 0%,#405e38 45%,#101611 100%); box-shadow:inset 12px 0 22px rgba(0,0,0,.24),inset -2px 0 0 rgba(255,255,255,.12); transform:translateZ(12px); overflow:hidden; }
+    .book-face::before { content:''; position:absolute; inset:16px; border:1px solid rgba(186,200,177,.32); border-radius:4px; }
+    .book-face::after { content:''; position:absolute; inset:0; background:linear-gradient(120deg,rgba(255,255,255,.16),transparent 24%,transparent 72%,rgba(0,0,0,.18)); pointer-events:none; }
+    .book-spine { position:absolute; width:24px; height:310px; left:-24px; top:0; transform-origin:right center; transform:rotateY(-90deg); background:linear-gradient(180deg,#243423,#101610); border:1px solid rgba(186,200,177,.18); border-radius:5px 0 0 5px; }
+    .book-pages { position:absolute; width:220px; height:306px; left:0; top:2px; transform:translateZ(-8px); background:repeating-linear-gradient(90deg,#dfe2da 0,#dfe2da 2px,#b8beb2 3px,#eef0eb 4px); border-radius:2px 12px 12px 2px; box-shadow:0 10px 20px rgba(0,0,0,.28); }
+    .book-title { position:absolute; left:32px; right:28px; top:52px; font-family:'JetBrains Mono',monospace; font-size:15px; line-height:1.5; letter-spacing:.08em; text-transform:uppercase; color:#e6e6e6; z-index:2; }
+    .book-number { position:absolute; left:32px; bottom:34px; font-family:'JetBrains Mono',monospace; font-size:11px; color:#bac8b1; z-index:2; }
+    .book-accent { position:absolute; width:74px; height:74px; right:28px; bottom:28px; border:1px solid rgba(186,200,177,.45); border-radius:50%; display:grid; place-items:center; color:#bac8b1; font:700 11px/1 'JetBrains Mono',monospace; z-index:2; }
+    .book-float-1 { transform:translate(-50%,-50%) rotateY(-24deg) rotateX(8deg) translate3d(-150px,-32px,10px) scale(.82); opacity:.6; }
+    .book-float-2 { transform:translate(-50%,-50%) rotateY(-24deg) rotateX(8deg) translate3d(155px,30px,-20px) scale(.72); opacity:.46; }
+    .stage-label { position:absolute; bottom:22px; left:50%; transform:translateX(-50%); font:10px 'JetBrains Mono',monospace; letter-spacing:.24em; color:rgba(186,200,177,.65); white-space:nowrap; }
+    .depth-card { transform-style:preserve-3d; transition:transform .18s ease, box-shadow .25s ease; will-change:transform; }
+    .depth-card:hover { box-shadow:0 28px 60px rgba(0,0,0,.34), inset 0 1px 0 rgba(186,200,177,.14); }
+    .depth-card .card-depth { transform:translateZ(26px); }
+    .project-stage { position:relative; min-height:520px; margin-top:20px; display:grid; place-items:center; perspective:1400px; }
+    .project-deck { position:relative; width:min(100%,920px); height:480px; transform-style:preserve-3d; }
+    .project-card { position:absolute; width:340px; min-height:430px; left:50%; top:50%; padding:28px; border-radius:18px; transform-style:preserve-3d; background:linear-gradient(145deg,rgba(67,83,61,.92),rgba(26,34,25,.94)); border:1px solid rgba(186,200,177,.2); box-shadow:0 30px 70px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.08); transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .45s ease,filter .45s ease; }
+    .project-card.is-main { transform:translate(-50%,-50%) translateZ(120px) rotateY(-5deg) rotateX(2deg); z-index:3; }
+    .project-card.is-left { transform:translate(-92%,-50%) translateZ(-10px) rotateY(24deg) rotateZ(-3deg) scale(.86); opacity:.62; filter:saturate(.72); z-index:2; }
+    .project-card.is-right { transform:translate(-8%,-50%) translateZ(-40px) rotateY(-24deg) rotateZ(3deg) scale(.82); opacity:.5; filter:saturate(.65); z-index:1; }
+    .project-card .edge { position:absolute; inset:12px auto 12px 0; width:3px; border-radius:3px; background:linear-gradient(#bac8b1,#7b9669); box-shadow:0 0 18px rgba(123,150,105,.35); }
+    .project-card .card-number { font:11px 'JetBrains Mono',monospace; color:#bac8b1; letter-spacing:.16em; }
+    .project-card .card-title { font-size:27px; line-height:1.12; margin-top:48px; }
+    .project-card .card-bottom { position:absolute; left:28px; right:28px; bottom:28px; display:flex; justify-content:space-between; align-items:end; gap:12px; }
+    .showcase-controls { display:flex; justify-content:center; gap:10px; margin-top:8px; }
+    .showcase-controls button { width:42px; height:42px; border:1px solid rgba(186,200,177,.25); border-radius:50%; background:rgba(64,78,59,.55); color:#bac8b1; font-family:'JetBrains Mono',monospace; cursor:pointer; transition:.25s; }
+    .showcase-controls button:hover { background:#7b9669; color:#404e3b; transform:translateY(-2px); }
+    .showcase-hint { text-align:center; margin-top:12px; font:10px 'JetBrains Mono',monospace; letter-spacing:.16em; color:rgba(186,200,177,.55); text-transform:uppercase; }
+    @media (max-width: 1024px) { .project-orbit { right:-8%; opacity:.62; } .hero-copy{max-width:620px;} }
+    @media (max-width: 768px) {
+      .hero-stage { min-height:760px; align-items:start; padding-top:60px; }
+      .project-orbit { position:absolute; top:auto; bottom:-20px; right:50%; transform:translate(50%,0) scale(.74); width:620px; opacity:.78; }
+      .project-stage { min-height:690px; }
+      .project-card { width:290px; min-height:410px; }
+      .project-card.is-left { transform:translate(-82%,-50%) translateZ(-20px) rotateY(20deg) scale(.74); }
+      .project-card.is-right { transform:translate(-18%,-50%) translateZ(-40px) rotateY(-20deg) scale(.70); }
+      .project-card.is-main { transform:translate(-50%,-50%) translateZ(100px); }
+    }
+    @media (prefers-reduced-motion: reduce) { .book,.project-card,.depth-card { transition:none !important; } }
+
   </style>
 </head>
 <body class="font-sans antialiased selection:bg-jade selection:text-jadeDark">
@@ -139,15 +188,13 @@
   </header>
 
   <main class="relative z-10">
-    <section id="hero" class="min-h-screen flex items-center pt-24 pb-20">
-      <div class="max-w-6xl mx-auto px-6 w-full">
-        <div class="max-w-3xl">
+    <section id="hero" class="min-h-screen flex items-center pt-24 pb-20 scene-3d">
+      <div class="max-w-6xl mx-auto px-6 w-full hero-stage">
+        <div class="max-w-3xl hero-copy">
           <p class="font-mono text-xs tracking-[0.2em] text-jadeLight mb-5 uppercase">Available for AI engineering roles</p>
           <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-jadePale leading-[1.1] mb-5">Mohammad Shavez</h1>
           <h2 class="text-xl sm:text-2xl md:text-3xl font-medium text-jade neon-text mb-7">Data Scientist & AI (IIT Roorkee)</h2>
-          <p class="text-base sm:text-lg text-jadePale/75 leading-relaxed max-w-xl mb-10">
-            I design and ship production machine learning systems — from domain-adapted LLMs and data pipelines to FastAPI services that stay reliable under real traffic.
-          </p>
+          <p class="text-base sm:text-lg text-jadePale/75 leading-relaxed max-w-xl mb-10">I design and ship production machine learning systems — from domain-adapted LLMs and data pipelines to FastAPI services that stay reliable under real traffic.</p>
           <div class="flex flex-wrap gap-4">
             <a href="#projects" class="inline-flex items-center px-7 py-3.5 rounded-full bg-jade text-jadeDark font-semibold text-sm hover:bg-jadeLight transition-colors duration-300 shadow-lg">View Selected Work</a>
             <a href="mailto:muhammadshavez24@gmail.com" class="inline-flex items-center px-7 py-3.5 rounded-full glass text-jadePale text-sm hover:border-jade transition-all duration-300">muhammadshavez24@gmail.com</a>
@@ -159,6 +206,12 @@
             <span class="px-4 py-1.5 rounded-full text-xs font-mono bg-jadeDark/60 border border-jadeMuted/30 text-jadeMuted">FastAPI</span>
             <span class="px-4 py-1.5 rounded-full text-xs font-mono bg-jadeDark/60 border border-jadeMuted/30 text-jadeMuted">Data Pipelines</span>
           </div>
+        </div>
+        <div class="project-orbit" aria-hidden="true">
+          <div class="book book-float-1"><div class="book-pages"></div><div class="book-spine"></div><div class="book-face"><div class="book-title">ML<br>Systems<br>Field Notes</div><div class="book-number">VOL. 01</div><div class="book-accent">AI</div></div></div>
+          <div class="book book-float-2"><div class="book-pages"></div><div class="book-spine"></div><div class="book-face"><div class="book-title">Python<br>Backend<br>Patterns</div><div class="book-number">VOL. 03</div><div class="book-accent">API</div></div></div>
+          <div class="book" id="hero-book"><div class="book-pages"></div><div class="book-spine"></div><div class="book-face"><div class="book-title">Mohammad<br>Shavez<br>Portfolio</div><div class="book-number">FIELD EDITION · 2026</div><div class="book-accent">MS</div></div></div>
+          <div class="stage-label">DRAG / MOVE TO EXPLORE</div>
         </div>
       </div>
     </section>
@@ -192,72 +245,34 @@
       </div>
     </section>
 
-    <section id="projects" class="py-28">
+    <section id="projects" class="py-28 scene-3d">
       <div class="max-w-6xl mx-auto px-6">
-        <div class="mb-14">
-          <p class="font-mono text-xs tracking-[0.2em] text-jade uppercase mb-3">Selected Work</p>
+        <div class="mb-10">
+          <p class="font-mono text-xs tracking-[0.2em] text-jade uppercase mb-3">Selected Work · 01—03</p>
           <h3 class="text-3xl sm:text-4xl font-bold text-jadePale">Featured Projects</h3>
+          <p class="mt-4 max-w-2xl text-sm text-jadeMuted leading-relaxed">A physical-style 3D deck for the work behind the interface. Rotate through the case files, then open the source or live artifact.</p>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-7">
-          <article class="glass rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
-            <div class="p-7">
-              <div class="flex items-center justify-between mb-5">
-                <span class="font-mono text-xs text-jadeLight">NLP · Deep Learning</span>
-                <span class="font-mono text-xs text-jadeMuted">v1.2</span>
-              </div>
-              <h4 class="text-xl font-bold text-jadePale group-hover:text-jade transition-colors mb-4">Domain LLM Fine-Tuning & Serving</h4>
-              <p class="text-sm text-jadeMuted leading-relaxed mb-5">Fine-tuned an open-source LLM on domain documents using LoRA, then packaged a FastAPI + Docker inference service with request batching and basic latency monitoring. Focused on reducing hallucination on specialized terminology while keeping inference under practical latency budgets.</p>
-              <div class="flex flex-wrap gap-2 mb-7">
-                <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">Hugging Face</span>
-                <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">PyTorch</span>
-                <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">FastAPI</span>
-                <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">Docker</span>
-              </div>
-              <div class="flex items-center gap-5 font-mono text-xs">
-                <a href="https://github.com/muhammadshavez24" target="_blank" rel="noopener noreferrer" class="text-jade hover:underline">Source →</a>
-                <a href="#" class="text-jadeMuted hover:text-jadePale transition-colors">API Docs</a>
-              </div>
-            </div>
-          </article>
-          <article class="glass rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
-            <div class="p-7">
-              <div class="flex items-center justify-between mb-5">
-                <span class="font-mono text-xs text-jade">Predictive Analytics</span>
-                <span class="font-mono text-xs text-jadeMuted">v2.0</span>
-              </div>
-              <h4 class="text-xl font-bold text-jadePale group-hover:text-jadeLight transition-colors mb-4">Automated Feature & Model Pipeline</h4>
-              <p class="text-sm text-jadeMuted leading-relaxed mb-5">Built an end-to-end pipeline that ingests tabular data, generates candidate features, runs cross-validated model selection, and surfaces results in a Streamlit dashboard. Included data validation checks and simple experiment tracking so results stayed reproducible across runs.</p>
-              <div class="flex flex-wrap gap-2 mb-7">
-                <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">Pandas</span>
-                <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">Scikit-Learn</span>
-                <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">Streamlit</span>
-              </div>
-              <div class="flex items-center gap-5 font-mono text-xs">
-                <a href="https://github.com/muhammadshavez24" target="_blank" rel="noopener noreferrer" class="text-jadeLight hover:underline">Source →</a>
-                <a href="#" class="text-jadeMuted hover:text-jadePale transition-colors">Dashboard</a>
-              </div>
-            </div>
-          </article>
-          <article class="glass rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 group">
-            <div class="p-7">
-              <div class="flex items-center justify-between mb-5">
-                <span class="font-mono text-xs text-jadeLight">Backend · Automation</span>
-                <span class="font-mono text-xs text-jadeMuted">v1.0</span>
-              </div>
-              <h4 class="text-xl font-bold text-jadePale group-hover:text-jade transition-colors mb-4">Async Data Ingestion Service</h4>
-              <p class="text-sm text-jadeMuted leading-relaxed mb-5">Designed an asynchronous ingestion service that accepts structured and semi-structured payloads, validates schemas, and writes to storage in batches. Built with Python asyncio and FastAPI, with basic retry logic and structured logging for operational visibility.</p>
-              <div class="flex flex-wrap gap-2 mb-7">
-                <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">AsyncIO</span>
-                <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">FastAPI</span>
-                <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">CI/CD</span>
-              </div>
-              <div class="flex items-center gap-5 font-mono text-xs">
-                <a href="https://github.com/muhammadshavez24" target="_blank" rel="noopener noreferrer" class="text-jade hover:underline">Source →</a>
-                <a href="#" class="text-jadeMuted hover:text-jadePale transition-colors">Docs</a>
-              </div>
-            </div>
-          </article>
+        <div class="project-stage" id="project-showcase">
+          <div class="project-deck" id="project-deck">
+            <article class="project-card is-main" data-index="0">
+              <div class="edge"></div><div class="card-number">FIELD FILE · 01</div>
+              <div class="card-depth"><div class="mt-4 font-mono text-xs text-jadeLight">NLP · DEEP LEARNING</div><h4 class="card-title font-bold text-jadePale">Domain LLM Fine-Tuning & Serving</h4><p class="mt-6 text-sm text-jadeMuted leading-relaxed">Fine-tuned an open-source LLM with LoRA, then packaged FastAPI + Docker inference with batching and latency monitoring.</p><div class="mt-6 flex flex-wrap gap-2"><span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">Hugging Face</span><span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">PyTorch</span><span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">FastAPI</span></div></div>
+              <div class="card-bottom"><span class="font-mono text-[10px] text-jadeMuted">VOL. 01 · 2026</span><a href="https://github.com/muhammadshavez24" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-jade hover:underline">Source →</a></div>
+            </article>
+            <article class="project-card is-right" data-index="1">
+              <div class="edge"></div><div class="card-number">FIELD FILE · 02</div>
+              <div class="card-depth"><div class="mt-4 font-mono text-xs text-jadeLight">PREDICTIVE ANALYTICS</div><h4 class="card-title font-bold text-jadePale">Automated Feature & Model Pipeline</h4><p class="mt-6 text-sm text-jadeMuted leading-relaxed">An end-to-end tabular pipeline with candidate feature generation, cross-validated model selection, validation checks and a Streamlit dashboard.</p><div class="mt-6 flex flex-wrap gap-2"><span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">Pandas</span><span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">Scikit-Learn</span><span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">Streamlit</span></div></div>
+              <div class="card-bottom"><span class="font-mono text-[10px] text-jadeMuted">VOL. 02 · 2026</span><a href="https://github.com/muhammadshavez24" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-jade hover:underline">Source →</a></div>
+            </article>
+            <article class="project-card is-left" data-index="2">
+              <div class="edge"></div><div class="card-number">FIELD FILE · 03</div>
+              <div class="card-depth"><div class="mt-4 font-mono text-xs text-jadeLight">BACKEND · AUTOMATION</div><h4 class="card-title font-bold text-jadePale">Async Data Ingestion Service</h4><p class="mt-6 text-sm text-jadeMuted leading-relaxed">An asynchronous ingestion service for structured and semi-structured payloads, schema validation, batched writes, retries and structured logging.</p><div class="mt-6 flex flex-wrap gap-2"><span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">AsyncIO</span><span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">FastAPI</span><span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-jadeDark text-jadePale/80">CI/CD</span></div></div>
+              <div class="card-bottom"><span class="font-mono text-[10px] text-jadeMuted">VOL. 03 · 2026</span><a href="https://github.com/muhammadshavez24" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-jade hover:underline">Source →</a></div>
+            </article>
+          </div>
         </div>
+        <div class="showcase-controls" aria-label="Project showcase controls"><button id="project-prev" type="button" aria-label="Previous project">←</button><button id="project-next" type="button" aria-label="Next project">→</button></div>
+        <p class="showcase-hint">Use the arrows or swipe the deck</p>
       </div>
     </section>
 
@@ -322,6 +337,38 @@
         setTimeout(() => loader.classList.add('hidden'), 500);
       }
     }, 140);
+
+
+    // 3D editorial project deck
+    const deck = document.getElementById('project-deck');
+    const cards = [...deck.querySelectorAll('.project-card')];
+    let activeProject = 0;
+    function renderDeck() {
+      cards.forEach((card, i) => {
+        const rel = (i - activeProject + cards.length) % cards.length;
+        card.classList.remove('is-main','is-left','is-right');
+        if (rel === 0) card.classList.add('is-main');
+        else if (rel === 1) card.classList.add('is-right');
+        else card.classList.add('is-left');
+      });
+    }
+    function shiftDeck(dir) { activeProject = (activeProject + dir + cards.length) % cards.length; renderDeck(); }
+    document.getElementById('project-prev').addEventListener('click', () => shiftDeck(-1));
+    document.getElementById('project-next').addEventListener('click', () => shiftDeck(1));
+    let touchStartX = null;
+    deck.addEventListener('pointerdown', e => { touchStartX = e.clientX; deck.setPointerCapture?.(e.pointerId); });
+    deck.addEventListener('pointerup', e => { if (touchStartX === null) return; const dx = e.clientX - touchStartX; if (Math.abs(dx) > 45) shiftDeck(dx < 0 ? 1 : -1); touchStartX = null; });
+    renderDeck();
+
+    // Cursor parallax on the hero book.
+    const heroBook = document.getElementById('hero-book');
+    if (heroBook && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.addEventListener('pointermove', e => {
+        const x = (e.clientX / window.innerWidth - .5) * 2;
+        const y = (e.clientY / window.innerHeight - .5) * 2;
+        heroBook.style.transform = `translate(-50%,-50%) rotateY(${-24 + x * 10}deg) rotateX(${8 - y * 7}deg) translateZ(80px)`;
+      }, {passive:true});
+    }
 
     const isMobile = window.innerWidth < 768;
     const canvas = document.getElementById('webgl-canvas');
